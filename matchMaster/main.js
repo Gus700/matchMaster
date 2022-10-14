@@ -28,6 +28,9 @@ const G = {
 
 options = {
     theme: "shapeDark",
+    isCapturing: true,
+    isCapturingGameCanvasOnly: true,
+    captureCanvasScale: 2,
     viewSize: {x: G.WIDTH, y: G.LENGTH}
 };
 let roundsRemaining = 10;
