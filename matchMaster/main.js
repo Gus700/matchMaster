@@ -54,8 +54,8 @@ function update() {
 			"light_purple",
 			"black"
 		];
-        numToDisplay = floor(rnd(10, 20));
-        roundsRemaining = 10;
+        numToDisplay = floor(rnd(5, 15));
+        roundsRemaining = 11;
         amountCliked = 0;
     }
     //end if out of rounds
@@ -88,8 +88,10 @@ function update() {
         
         text(numToDisplay.toString(), G.WIDTH * 0.5, G.LENGTH * 0.5,{scale:{x:2,y:2}});
     }
-    if (input.isJustPressed && amountCliked <= numToDisplay && currentlyDisplayingNum == false){
+    if(input.isJustPressed && currentlyDisplayingNum == false){
         amountCliked++;
+    if ( amountCliked < numToDisplay){
+        
         let x, y = 0;
         x = rnd(15, G.WIDTH-15);
         y=rnd(15, G.LENGTH-5);
@@ -99,12 +101,25 @@ function update() {
         color("green");
         char("a", x, y);
         play("tone",{volume:10,freq:amountCliked*111+amountCliked*22+amountCliked});
-    } else if(input.isJustPressed && amountCliked > numToDisplay && currentlyDisplayingNum == false) {
+    } else if(amountCliked == numToDisplay){
+        
+        let x, y = 0;
+        x = rnd(15, G.WIDTH-15);
+        y=rnd(15, G.LENGTH-5);
+        color(this.c[rndi(0,this.c.length)]);
+        //moar particles >:(
+        particle(x,y,amountCliked*numToDisplay);
+        color("green");
+        char("a", x, y);
+        play("tone",{volume:10,freq:amountCliked*111+amountCliked*22+amountCliked});
+    } else if(amountCliked > numToDisplay) {
+        
         char("b", rnd(0, G.WIDTH), rnd(0, G.LENGTH));
         play("tone",{volume:10,note:"C1"});
         play("tone",{volume:10,note:"C#1"});
         play("tone",{volume:10,note:"Cb1"});
     }
+}
 }
 
 // If called inside of update, returns true every n number of ticks for n ticks 
