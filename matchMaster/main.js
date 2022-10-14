@@ -74,9 +74,13 @@ function update() {
     }
     if (input.isJustPressed && amountCliked <= numToDisplay && currentlyDisplayingNum == false){
         amountCliked++;
-        char("a", rnd(0, G.WIDTH), rnd(0, G.LENGTH));
+        char("a", rnd(15, G.WIDTH-15), rnd(15, G.LENGTH-5));
+        play("tone",{volume:10,freq:amountCliked*111+amountCliked*22+amountCliked});
     } else if(input.isJustPressed && amountCliked > numToDisplay && currentlyDisplayingNum == false) {
         char("b", rnd(0, G.WIDTH), rnd(0, G.LENGTH));
+        play("tone",{volume:10,note:"C1"});
+        play("tone",{volume:10,note:"C#1"});
+        play("tone",{volume:10,note:"Cb1"});
     }
 }
 
