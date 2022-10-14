@@ -34,7 +34,7 @@ function update() {
 
 // If called inside of update, returns true every n number of ticks for n ticks 
 function resetingTimer(currentTicks, every_n_ticks, for_n_ticks){
-    if (((currentTicks % every_n_ticks) >= 0) && (((currentTicks % every_n_ticks) <= for_n_ticks)) ) {
+    if (((currentTicks % every_n_ticks) > 0) && (((currentTicks % every_n_ticks) <= for_n_ticks)) ) {
         //console.log(every_n_ticks/60, "seconds have passed singal to display text");
         return true;
     } else {
