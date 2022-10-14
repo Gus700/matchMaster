@@ -60,7 +60,7 @@ function update() {
         } else if(amountCliked < numToDisplay) {
             addScore(amountCliked);
         } else {
-            addScore(numToDisplay - Math.abs(amountCliked-numToDisplay));
+            addScore(numToDisplay - amountCliked);
         }
         numToDisplay = floor(rnd(5, 15));
         amountCliked = 0;
