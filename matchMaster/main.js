@@ -1,12 +1,13 @@
 title = "Match Master";
 
-description = `
+description = `Click the correct
+amount
 `;
 
 characters = [];
 
 const G = {
-    WIDTH: 100,
+    WIDTH: 150,
     LENGTH: 100
 
 };
@@ -28,7 +29,7 @@ function update() {
     }
     // if 5 seconds have passed, display "displayNum" for half a second
     if (resetingTimer(ticks, 300, 30) == true) {
-        text(numToDisplay.toString(), 50, 50);
+        text(numToDisplay.toString(), G.WIDTH * 0.5, G.LENGTH * 0.5);
     }
 }
 
