@@ -37,14 +37,16 @@ let currentlyDisplayingNum = false;
 function update() {
     if (!ticks) { 
         numToDisplay = floor(rnd(10, 20));
+        roundsRemaining = 10;
+        amountCliked = 0;
     }
     //end if out of rounds
     if(!roundsRemaining){
         end();
     }
     //display rounds remaining
-    text("Rounds left:", G.WIDTH/2 -30, 5);
-    text(roundsRemaining.toString(),G.WIDTH/2 -30, 15);
+    text("Rounds left:", G.WIDTH/2 -35, 5);
+    text(roundsRemaining.toString(),G.WIDTH/2 -35, 15);
     
     currentlyDisplayingNum = false;
     // if 5 seconds have passed, change numToDisplay and reset amountClicked
@@ -52,8 +54,10 @@ function update() {
         //add score based on clicks and decrement rounds remaining
         if(amountCliked == numToDisplay){
             addScore(numToDisplay+5);
+        } else if(amountCliked < numToDisplay) {
+            addScore(amountCliked);
         } else {
-            addScore(numToDisplay - Math.abs(numToDisplay - amountCliked));
+            addScore(numToDisplay - Math.abs(amountCliked-numToDisplay));
         }
         numToDisplay = floor(rnd(5, 15));
         amountCliked = 0;
@@ -62,12 +66,13 @@ function update() {
     // if 5 seconds have passed, display "displayNum" for half a second
     if (resetingTimer(ticks, 300, 30) == true) {
         currentlyDisplayingNum = true;
-        text(numToDisplay.toString(), G.WIDTH * 0.5, G.LENGTH * 0.5);
+        
+        text(numToDisplay.toString(), G.WIDTH * 0.5, G.LENGTH * 0.5,{scale:{x:2,y:2}});
     }
-    if (input.isJustPressed && amountCliked < numToDisplay && currentlyDisplayingNum == false){
+    if (input.isJustPressed && amountCliked <= numToDisplay && currentlyDisplayingNum == false){
         amountCliked++;
         char("a", rnd(0, G.WIDTH), rnd(0, G.LENGTH));
-    } else if(input.isJustPressed && amountCliked >= numToDisplay && currentlyDisplayingNum == false) {
+    } else if(input.isJustPressed && amountCliked > numToDisplay && currentlyDisplayingNum == false) {
         char("b", rnd(0, G.WIDTH), rnd(0, G.LENGTH));
     }
 }
