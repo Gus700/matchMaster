@@ -12,6 +12,7 @@ const G = {
 };
 
 options = {
+    theme: "shapeDark",
     viewSize: {x: G.WIDTH, y: G.LENGTH}
 };
 
