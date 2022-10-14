@@ -38,7 +38,22 @@ let numToDisplay = 0;
 let amountCliked = 0;
 let currentlyDisplayingNum = false;
 function update() {
-    if (!ticks) { 
+    if (!ticks) {
+        this.c = [
+			"red",
+			"light_cyan",
+			"green",
+			"light_red",
+			"blue",
+			"light_green",
+			"yellow",
+			"light_blue",
+			"purple",
+			"light_yellow",
+			"cyan",
+			"light_purple",
+			"black"
+		];
         numToDisplay = floor(rnd(10, 20));
         roundsRemaining = 10;
         amountCliked = 0;
@@ -48,6 +63,7 @@ function update() {
         end();
     }
     //display rounds remaining
+    color("black")
     text("Rounds left:", G.WIDTH/2 -35, 5);
     text(roundsRemaining.toString(),G.WIDTH/2 -35, 15);
     
@@ -74,7 +90,13 @@ function update() {
     }
     if (input.isJustPressed && amountCliked <= numToDisplay && currentlyDisplayingNum == false){
         amountCliked++;
-        char("a", rnd(15, G.WIDTH-15), rnd(15, G.LENGTH-5));
+        let x, y = 0;
+        x = rnd(15, G.WIDTH-15);
+        y=rnd(15, G.LENGTH-5);
+        color(this.c[rndi(0,this.c.length)]);
+        particle(x,y,amountCliked);
+        color("green");
+        char("a", x, y);
         play("tone",{volume:10,freq:amountCliked*111+amountCliked*22+amountCliked});
     } else if(input.isJustPressed && amountCliked > numToDisplay && currentlyDisplayingNum == false) {
         char("b", rnd(0, G.WIDTH), rnd(0, G.LENGTH));
