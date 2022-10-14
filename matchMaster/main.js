@@ -94,7 +94,7 @@ function update() {
         x = rnd(15, G.WIDTH-15);
         y=rnd(15, G.LENGTH-5);
         color(this.c[rndi(0,this.c.length)]);
-        particle(x,y,amountCliked);
+        particle(x,y,amountCliked*numToDisplay);
         color("green");
         char("a", x, y);
         play("tone",{volume:10,freq:amountCliked*111+amountCliked*22+amountCliked});
