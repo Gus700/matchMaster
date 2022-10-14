@@ -30,7 +30,7 @@ options = {
     theme: "shapeDark",
     viewSize: {x: G.WIDTH, y: G.LENGTH}
 };
-
+let roundsRemaining = 10;
 let numToDisplay = 0;
 let amountCliked = 0;
 let currentlyDisplayingNum = false;
@@ -38,11 +38,26 @@ function update() {
     if (!ticks) { 
         numToDisplay = floor(rnd(10, 20));
     }
+    //end if out of rounds
+    if(!roundsRemaining){
+        end();
+    }
+    //display rounds remaining
+    text("Rounds left:", G.WIDTH/2 -30, 5);
+    text(roundsRemaining.toString(),G.WIDTH/2 -30, 15);
+    
     currentlyDisplayingNum = false;
     // if 5 seconds have passed, change numToDisplay and reset amountClicked
     if (resetingTimer(ticks, 300, 1) == true) {
+        //add score based on clicks and decrement rounds remaining
+        if(amountCliked == numToDisplay){
+            addScore(numToDisplay+5);
+        } else {
+            addScore(numToDisplay - Math.abs(numToDisplay - amountCliked));
+        }
         numToDisplay = floor(rnd(5, 15));
         amountCliked = 0;
+        roundsRemaining--;
     }
     // if 5 seconds have passed, display "displayNum" for half a second
     if (resetingTimer(ticks, 300, 30) == true) {
