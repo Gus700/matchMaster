@@ -94,6 +94,7 @@ function update() {
         x = rnd(15, G.WIDTH-15);
         y=rnd(15, G.LENGTH-5);
         color(this.c[rndi(0,this.c.length)]);
+        //moar particles >:(
         particle(x,y,amountCliked*numToDisplay);
         color("green");
         char("a", x, y);
